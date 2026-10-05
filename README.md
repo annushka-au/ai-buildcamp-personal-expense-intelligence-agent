@@ -1,14 +1,26 @@
-# Your Project Name
+# Personal Expense Intelligence Agent
 
-A starter template for the AI Engineering Buildcamp capstone. Replace this README with a description of your own project.
+An AI Engineering Buildcamp capstone project.
 
 ## The Problem
 
-Describe the problem your project solves and who has it. One or two sentences.
+Individuals and households want to understand their spending, but manually entering every transaction from receipts, bills, and invoices is tedious and most people give up on it. Without structured data, it's hard to answer simple questions like "why did I spend more this month?" or "how much did I spend on groceries in September?".
 
 ## What It Does
 
-Describe what the AI system does and a typical interaction. What does the user provide? What does the system return?
+Users upload receipts, bills, and invoices as images or PDFs. The system extracts key information — merchant, date, line items, categories, and amounts — and stores it as structured data. Users can then ask questions about their spending in natural language, such as "Why did I spend more this month?" or "How much did I spend on groceries in September?"
+
+To answer, the system combines structured database queries (for totals, trends, and category breakdowns) with RAG over the original receipts and documents, returning an accurate explanation backed by the underlying transactions.
+
+The MVP focuses on:
+
+- Document extraction (receipts, bills, invoices → structured fields)
+- Structured storage of transactions
+- Natural-language querying over spending data
+- RAG over original receipt/document text
+- Basic spending analytics (totals, categories, monthly comparisons)
+
+Later versions could add dashboards, trend analysis, anomaly detection, and expense forecasting.
 
 ## Setup
 
