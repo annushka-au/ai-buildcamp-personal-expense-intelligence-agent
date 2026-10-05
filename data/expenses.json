@@ -1,0 +1,194 @@
+[
+  {
+    "id": "exp-001",
+    "date": "2026-08-03",
+    "merchant": "Woolworths",
+    "category": "groceries",
+    "description": "August grocery shopping: fresh produce, dairy, and pantry items",
+    "total": 94.50
+  },
+  {
+    "id": "exp-002",
+    "date": "2026-08-05",
+    "merchant": "Origin Energy",
+    "category": "utilities",
+    "description": "August electricity bill",
+    "total": 118.40
+  },
+  {
+    "id": "exp-003",
+    "date": "2026-08-07",
+    "merchant": "Sydney Water",
+    "category": "utilities",
+    "description": "August water bill",
+    "total": 42.10
+  },
+  {
+    "id": "exp-004",
+    "date": "2026-08-01",
+    "merchant": "Telstra",
+    "category": "utilities",
+    "description": "August mobile and home internet plan",
+    "total": 95.00
+  },
+  {
+    "id": "exp-005",
+    "date": "2026-08-10",
+    "merchant": "Uber",
+    "category": "transport",
+    "description": "August commute rides to work",
+    "total": 46.75
+  },
+  {
+    "id": "exp-006",
+    "date": "2026-08-20",
+    "merchant": "Ampol",
+    "category": "transport",
+    "description": "August fuel fill-up for the car",
+    "total": 58.40
+  },
+  {
+    "id": "exp-007",
+    "date": "2026-08-12",
+    "merchant": "The Local Hotel",
+    "category": "dining",
+    "description": "Dinner with friends at the local pub in August",
+    "total": 62.90
+  },
+  {
+    "id": "exp-008",
+    "date": "2026-08-22",
+    "merchant": "Guzman y Gomez",
+    "category": "dining",
+    "description": "August lunch takeout",
+    "total": 16.90
+  },
+  {
+    "id": "exp-009",
+    "date": "2026-08-15",
+    "merchant": "Kmart",
+    "category": "household",
+    "description": "New cushions and storage boxes for the living room, bought in August",
+    "total": 54.00
+  },
+  {
+    "id": "exp-010",
+    "date": "2026-08-18",
+    "merchant": "Chemist Warehouse",
+    "category": "health",
+    "description": "August prescription refill and vitamins",
+    "total": 38.60
+  },
+  {
+    "id": "exp-011",
+    "date": "2026-08-01",
+    "merchant": "Netflix",
+    "category": "subscriptions",
+    "description": "August monthly streaming subscription",
+    "total": 16.99
+  },
+  {
+    "id": "exp-012",
+    "date": "2026-09-04",
+    "merchant": "Woolworths",
+    "category": "groceries",
+    "description": "September grocery shopping: fresh produce, dairy, and pantry items",
+    "total": 101.20
+  },
+  {
+    "id": "exp-013",
+    "date": "2026-09-16",
+    "merchant": "Coles",
+    "category": "groceries",
+    "description": "September bulk grocery and household supplies run before visitors arrived",
+    "total": 156.80
+  },
+  {
+    "id": "exp-014",
+    "date": "2026-09-06",
+    "merchant": "Origin Energy",
+    "category": "utilities",
+    "description": "September electricity bill",
+    "total": 122.50
+  },
+  {
+    "id": "exp-015",
+    "date": "2026-09-08",
+    "merchant": "Sydney Water",
+    "category": "utilities",
+    "description": "September water bill",
+    "total": 41.30
+  },
+  {
+    "id": "exp-016",
+    "date": "2026-09-01",
+    "merchant": "Telstra",
+    "category": "utilities",
+    "description": "September mobile and home internet plan",
+    "total": 95.00
+  },
+  {
+    "id": "exp-017",
+    "date": "2026-09-11",
+    "merchant": "Qantas",
+    "category": "transport",
+    "description": "September flight from Sydney to Melbourne for a family visit",
+    "total": 389.00
+  },
+  {
+    "id": "exp-018",
+    "date": "2026-09-20",
+    "merchant": "Uber",
+    "category": "transport",
+    "description": "September rides to and from the airport",
+    "total": 67.40
+  },
+  {
+    "id": "exp-019",
+    "date": "2026-09-05",
+    "merchant": "The Local Hotel",
+    "category": "dining",
+    "description": "September birthday dinner for two at the local pub",
+    "total": 92.50
+  },
+  {
+    "id": "exp-020",
+    "date": "2026-09-12",
+    "merchant": "Guzman y Gomez",
+    "category": "dining",
+    "description": "September dinner with friends",
+    "total": 48.70
+  },
+  {
+    "id": "exp-021",
+    "date": "2026-09-14",
+    "merchant": "Bunnings Warehouse",
+    "category": "household",
+    "description": "Replacement washing machine bought in September after the old one broke",
+    "total": 648.00
+  },
+  {
+    "id": "exp-022",
+    "date": "2026-09-21",
+    "merchant": "Kmart",
+    "category": "household",
+    "description": "New desk and chair for the home office, bought in September",
+    "total": 149.00
+  },
+  {
+    "id": "exp-023",
+    "date": "2026-09-19",
+    "merchant": "Local Medical Centre",
+    "category": "health",
+    "description": "September GP consultation gap payment",
+    "total": 48.00
+  },
+  {
+    "id": "exp-024",
+    "date": "2026-09-01",
+    "merchant": "Netflix",
+    "category": "subscriptions",
+    "description": "September monthly streaming subscription",
+    "total": 16.99
+  }
+]
