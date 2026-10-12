@@ -5,7 +5,7 @@
     "merchant": "Woolworths",
     "category": "groceries",
     "description": "August grocery shopping: fresh produce, dairy, and pantry items",
-    "total": 94.50
+    "total": 94.5
   },
   {
     "id": "exp-002",
@@ -13,7 +13,7 @@
     "merchant": "Origin Energy",
     "category": "utilities",
     "description": "August electricity bill",
-    "total": 118.40
+    "total": 118.4
   },
   {
     "id": "exp-003",
@@ -21,7 +21,7 @@
     "merchant": "Sydney Water",
     "category": "utilities",
     "description": "August water bill",
-    "total": 42.10
+    "total": 42.1
   },
   {
     "id": "exp-004",
@@ -29,7 +29,7 @@
     "merchant": "Telstra",
     "category": "utilities",
     "description": "August mobile and home internet plan",
-    "total": 95.00
+    "total": 95.0
   },
   {
     "id": "exp-005",
@@ -45,7 +45,7 @@
     "merchant": "Ampol",
     "category": "transport",
     "description": "August fuel fill-up for the car",
-    "total": 58.40
+    "total": 58.4
   },
   {
     "id": "exp-007",
@@ -53,7 +53,7 @@
     "merchant": "The Local Hotel",
     "category": "dining",
     "description": "Dinner with friends at the local pub in August",
-    "total": 62.90
+    "total": 62.9
   },
   {
     "id": "exp-008",
@@ -61,7 +61,7 @@
     "merchant": "Guzman y Gomez",
     "category": "dining",
     "description": "August lunch takeout",
-    "total": 16.90
+    "total": 16.9
   },
   {
     "id": "exp-009",
@@ -69,7 +69,7 @@
     "merchant": "Kmart",
     "category": "household",
     "description": "New cushions and storage boxes for the living room, bought in August",
-    "total": 54.00
+    "total": 54.0
   },
   {
     "id": "exp-010",
@@ -77,7 +77,7 @@
     "merchant": "Chemist Warehouse",
     "category": "health",
     "description": "August prescription refill and vitamins",
-    "total": 38.60
+    "total": 38.6
   },
   {
     "id": "exp-011",
@@ -93,7 +93,7 @@
     "merchant": "Woolworths",
     "category": "groceries",
     "description": "September grocery shopping: fresh produce, dairy, and pantry items",
-    "total": 101.20
+    "total": 101.2
   },
   {
     "id": "exp-013",
@@ -101,7 +101,7 @@
     "merchant": "Coles",
     "category": "groceries",
     "description": "September bulk grocery and household supplies run before visitors arrived",
-    "total": 156.80
+    "total": 156.8
   },
   {
     "id": "exp-014",
@@ -109,7 +109,7 @@
     "merchant": "Origin Energy",
     "category": "utilities",
     "description": "September electricity bill",
-    "total": 122.50
+    "total": 122.5
   },
   {
     "id": "exp-015",
@@ -117,7 +117,7 @@
     "merchant": "Sydney Water",
     "category": "utilities",
     "description": "September water bill",
-    "total": 41.30
+    "total": 41.3
   },
   {
     "id": "exp-016",
@@ -125,7 +125,7 @@
     "merchant": "Telstra",
     "category": "utilities",
     "description": "September mobile and home internet plan",
-    "total": 95.00
+    "total": 95.0
   },
   {
     "id": "exp-017",
@@ -133,7 +133,7 @@
     "merchant": "Qantas",
     "category": "transport",
     "description": "September flight from Sydney to Melbourne for a family visit",
-    "total": 389.00
+    "total": 389.0
   },
   {
     "id": "exp-018",
@@ -141,7 +141,7 @@
     "merchant": "Uber",
     "category": "transport",
     "description": "September rides to and from the airport",
-    "total": 67.40
+    "total": 67.4
   },
   {
     "id": "exp-019",
@@ -149,7 +149,7 @@
     "merchant": "The Local Hotel",
     "category": "dining",
     "description": "September birthday dinner for two at the local pub",
-    "total": 92.50
+    "total": 92.5
   },
   {
     "id": "exp-020",
@@ -157,7 +157,7 @@
     "merchant": "Guzman y Gomez",
     "category": "dining",
     "description": "September dinner with friends",
-    "total": 48.70
+    "total": 48.7
   },
   {
     "id": "exp-021",
@@ -165,7 +165,7 @@
     "merchant": "Bunnings Warehouse",
     "category": "household",
     "description": "Replacement washing machine bought in September after the old one broke",
-    "total": 648.00
+    "total": 648.0
   },
   {
     "id": "exp-022",
@@ -173,7 +173,7 @@
     "merchant": "Kmart",
     "category": "household",
     "description": "New desk and chair for the home office, bought in September",
-    "total": 149.00
+    "total": 149.0
   },
   {
     "id": "exp-023",
@@ -181,7 +181,7 @@
     "merchant": "Local Medical Centre",
     "category": "health",
     "description": "September GP consultation gap payment",
-    "total": 48.00
+    "total": 48.0
   },
   {
     "id": "exp-024",
@@ -190,5 +190,13 @@
     "category": "subscriptions",
     "description": "September monthly streaming subscription",
     "total": 16.99
+  },
+  {
+    "id": "upload-001",
+    "date": "2026-10-03",
+    "merchant": "Woolworths Metro",
+    "category": "groceries",
+    "description": "Groceries including milk, bread, eggs, bananas, and chicken",
+    "total": 31.5
   }
 ]
