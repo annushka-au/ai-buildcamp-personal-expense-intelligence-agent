@@ -45,6 +45,28 @@ Later versions could add dashboards, trend analysis, anomaly detection, and expe
 - `notebooks/01-setup.ipynb` - smoke test that confirms your environment works
 - `notebooks/02-rag.ipynb` - a minimal RAG baseline you can adapt to your own data
 
+## Testing
+
+`agent.py` is an importable copy of the Week 2 tool-calling agent from `notebooks/02-rag.ipynb`, extracted so pytest can run it directly.
+
+Run the test suite:
+
+    uv run pytest -v -s
+
+This is currently just a dry prototype - a single simple test (`tests/test_agent.py`) covering one scenario (the agent must not hallucinate a dollar figure when asked about a category, like "entertainment", that doesn't exist in the data), as a first step before building out a fuller test suite.
+
+### LLM Judge
+
+`tests/judge.py` provides `assert_criteria(answer, tool_calls, criteria)` - a plain-OpenAI port of the course reference project's judge pattern (structured JSON output instead of PydanticAI, since `agent.py` doesn't use PydanticAI). It sends a judge model the agent's final answer, its tool-call trace, and a list of natural-language criteria, and fails the test with the judge's own explanation if any criterion isn't satisfied.
+
+`tests/test_judge.py` applies it to the September-spike "why" question with 3 specific criteria:
+
+- the agent called `search_expenses` rather than `query_expenses`, since this is an open-ended question, not one needing an exact calculation
+- the answer explicitly names both the Qantas flight and the Bunnings washing machine as reasons for the September increase
+- the answer ties at least one real dollar amount to a named transaction, not just merchant names with no figures
+
+Each test run makes two live OpenAI calls, nothing mocked: one for the agent under test, one for the judge evaluating it. Running it (`uv run pytest -v -s tests/test_judge.py`) passed all 3 criteria, with the judge's explanation citing the real `$389.00` Qantas flight and `$648.00` washing machine as evidence.
+
 ## Data
 
 Put your project data in the `data/` folder. See `notebooks/02-rag.ipynb` for how to load it.
