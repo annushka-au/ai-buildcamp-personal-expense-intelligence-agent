@@ -28,9 +28,14 @@ Later versions could add dashboards, trend analysis, anomaly detection, and expe
 
 2. Clone this repository (or download the zip and extract it).
 
-3. Create a `.env` file from the template and add your API key:
+3. Create a `.env` file from the template and add your API keys:
 
        cp .env.example .env
+
+   You need `OPENAI_API_KEY`, and `LOGFIRE_TOKEN` (a Logfire project's
+   write token, "Send telemetry" capability) - `agent.py` calls
+   `logfire.configure()` unconditionally, so it won't start without one
+   (or without running `uv run logfire auth` locally instead).
 
 4. Install dependencies:
 
@@ -39,6 +44,23 @@ Later versions could add dashboards, trend analysis, anomaly detection, and expe
 5. Start Jupyter:
 
        uv run jupyter notebook
+
+## Try the Agent
+
+Run the interactive chat interface to test the agent:
+
+    uv run streamlit run app.py
+
+This opens at `http://localhost:8501` in your browser. Type a question about
+your spending (e.g. "Why were my expenses unusually high in September?") and
+the agent's answer appears below, along with an expandable panel showing
+which tools it called, with what arguments, and what they returned.
+
+Every interaction is automatically traced in Logfire - `agent.py` is
+instrumented with `logfire.instrument_openai()` plus a span per session and
+per tool call, so each question's full LLM calls, tool calls, and token
+usage/cost are visible in your Logfire dashboard with no extra setup in the
+app itself.
 
 ## Notebooks
 
