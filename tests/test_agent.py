@@ -1,3 +1,6 @@
+### Extraction functionality is not implemented yet.
+### This is a pseudo-test that defines the expected agent behaviour
+### once the extraction pipeline and real expense data are available.
 import re
 
 from tests.utils import collect_tool_names

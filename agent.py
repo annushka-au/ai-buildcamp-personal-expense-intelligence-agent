@@ -20,8 +20,9 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
-load_dotenv()
+load_dotenv(override=True)
 
+import logfire
 from openai import OpenAI
 from minsearch import Index
 
@@ -29,7 +30,20 @@ BASE_DIR = Path(__file__).resolve().parent
 EXPENSES_PATH = BASE_DIR / "data" / "expenses.json"
 UPLOADS_DIR = BASE_DIR / "data" / "uploads"
 
+logfire.configure()
+
 openai_client = OpenAI()
+logfire.instrument_openai(openai_client)
+
+# Pricing in USD per 1 million tokens, for per-session cost tracking.
+MODEL_PRICES = {
+    "gpt-4o-mini": {"input": 0.15, "output": 0.60},
+}
+
+
+def cost_usd(model, input_tokens, output_tokens):
+    prices = MODEL_PRICES.get(model, {"input": 0.0, "output": 0.0})
+    return (input_tokens / 1_000_000) * prices["input"] + (output_tokens / 1_000_000) * prices["output"]
 
 with open(EXPENSES_PATH) as f:
     documents = json.load(f)
@@ -377,43 +391,70 @@ General rules:
 def run_agent_traced(question, max_iterations=8, model="gpt-4o-mini"):
     """Same loop as run_agent, but also returns the list of tool calls made
     (name, args, result) so tests can assert on tool usage, not just the
-    final text."""
+    final text.
+
+    The whole call is wrapped in one Logfire span ("agent_session") so every
+    LLM request (auto-instrumented via logfire.instrument_openai) and every
+    tool call (its own nested span below) show up together as one trace.
+    Per-session token usage is accumulated across iterations and logged as
+    an event when the session ends.
+    """
     messages = [
         {"role": "system", "content": AGENT_INSTRUCTIONS},
         {"role": "user", "content": question},
     ]
     tool_calls_trace = []
+    total_input_tokens = 0
+    total_output_tokens = 0
 
-    for _ in range(max_iterations):
-        response = openai_client.responses.create(
-            model=model,
-            input=messages,
-            tools=TOOL_SCHEMAS,
-        )
+    with logfire.span("agent_session", question=question):
+        for _ in range(max_iterations):
+            response = openai_client.responses.create(
+                model=model,
+                input=messages,
+                tools=TOOL_SCHEMAS,
+            )
 
-        function_calls = [item for item in response.output if item.type == "function_call"]
+            total_input_tokens += response.usage.input_tokens
+            total_output_tokens += response.usage.output_tokens
 
-        if not function_calls:
-            return response.output_text, tool_calls_trace
+            function_calls = [item for item in response.output if item.type == "function_call"]
 
-        for call in function_calls:
-            args = json.loads(call.arguments)
-            result = TOOL_FUNCTIONS[call.name](**args)
-            tool_calls_trace.append({"name": call.name, "args": args, "result": result})
+            if not function_calls:
+                cost = cost_usd(model, total_input_tokens, total_output_tokens)
+                logfire.info(
+                    "session_cost",
+                    model=model,
+                    input_tokens=total_input_tokens,
+                    output_tokens=total_output_tokens,
+                    cost_usd=cost,
+                )
+                print(
+                    f"\n[session cost] model={model} "
+                    f"input_tokens={total_input_tokens} output_tokens={total_output_tokens} "
+                    f"cost=${cost:.6f}"
+                )
+                return response.output_text, tool_calls_trace
 
-            messages.append({
-                "type": "function_call",
-                "call_id": call.call_id,
-                "name": call.name,
-                "arguments": call.arguments,
-            })
-            messages.append({
-                "type": "function_call_output",
-                "call_id": call.call_id,
-                "output": json.dumps(result, default=str),
-            })
+            for call in function_calls:
+                args = json.loads(call.arguments)
+                with logfire.span("tool_call", name=call.name, args=args):
+                    result = TOOL_FUNCTIONS[call.name](**args)
+                tool_calls_trace.append({"name": call.name, "args": args, "result": result})
 
-    return "Reached the maximum number of tool calls without a final answer.", tool_calls_trace
+                messages.append({
+                    "type": "function_call",
+                    "call_id": call.call_id,
+                    "name": call.name,
+                    "arguments": call.arguments,
+                })
+                messages.append({
+                    "type": "function_call_output",
+                    "call_id": call.call_id,
+                    "output": json.dumps(result, default=str),
+                })
+
+        return "Reached the maximum number of tool calls without a final answer.", tool_calls_trace
 
 
 def run_agent(question, max_iterations=8, model="gpt-4o-mini"):
