@@ -346,6 +346,17 @@ All expense records are dated 2026. When a question names a month without a
 year (e.g. "September"), use that month in 2026 for `date_from`/`date_to` -
 do not assume any other year.
 
+When a question uses a relative date phrase instead of a named month (e.g.
+"last month", "this month", "recently"), state explicitly in your answer
+which date range you assumed (e.g. "Assuming 'last month' means September
+2026...") - never silently pick a range without saying so.
+
+For month totals or month-over-month comparisons with `query_expenses`,
+always use `group_by="month"` with `date_from`/`date_to` set to the full
+first-to-last day of each month (e.g. `2026-08-01` to `2026-08-31`), and
+leave `merchant`/`category` out of `filters` entirely rather than passing
+them as empty strings.
+
 Tool selection rules - follow these exactly:
 - Use `search_expenses` for open-ended or explanatory questions where the
   wording matters more than an exact number (e.g. "why was spending high in
@@ -379,6 +390,10 @@ General rules:
   merchants, dates, and amounts that support your answer.
 - If a tool's results don't contain enough information to answer
   confidently, say so clearly instead of guessing.
+- There is no forecasting tool and you must not predict or estimate future
+  spending. If asked to predict/forecast (e.g. "how much will I spend next
+  month?"), say explicitly that forecasting isn't supported - do not
+  extrapolate a number from past data, even approximately.
 - When you've successfully stored a new expense record, confirm back to the
   user what was stored (merchant, date, category, total) and its id.
 """.strip()
